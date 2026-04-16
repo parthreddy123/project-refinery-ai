@@ -123,6 +123,30 @@ Install these before starting development. All are free/open-source.
 | Git | Latest | https://git-scm.com/downloads | All projects |
 | VS Code | Latest | https://code.visualstudio.com/ | All projects |
 
+### Claude Code
+
+All development on this project is done with Claude Code — an AI coding agent that runs in your terminal. It reads your codebase, writes code, runs commands, and iterates with you.
+
+**Prerequisites:**
+| Software | Install | Notes |
+|----------|---------|-------|
+| Node.js 18+ | https://nodejs.org/ | Required for Claude Code CLI |
+| Anthropic API Key | https://console.anthropic.com/ | Set via `ANTHROPIC_API_KEY` env var or enter on first run |
+
+**Install:**
+```bash
+# Install Claude Code
+npm install -g @anthropic-ai/claude-code
+
+# Navigate to your project folder and start
+cd project-refinery-ai
+claude
+
+# Or run it inside VS Code — install the Claude Code extension from the marketplace
+```
+
+**How to use it:** Start Claude Code in your project directory. Describe what you want to build — e.g. "Build P4: a soft sensor model using the debutanizer dataset in input/debutanizer/". Claude will read the data, write the code, run it, fix errors, and iterate until the model works. Use it for all 12 projects.
+
 ### Python Packages
 ```bash
 pip install numpy pandas scikit-learn matplotlib plotly streamlit flask sqlalchemy

@@ -673,6 +673,31 @@ nav .nav-links a:hover { color: var(--accent); }
     </div>
 
     <div class="setup-group">
+      <h3>Claude Code</h3>
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 16px;">All development on this project is done with Claude Code &mdash; an AI coding agent that runs in your terminal. It reads your codebase, writes code, runs commands, and iterates with you.</p>
+      <div class="code-block">
+# Install Claude Code (requires Node.js 18+)<br>
+npm install -g @anthropic-ai/claude-code<br>
+<br>
+# Navigate to your project folder and start<br>
+cd project-refinery-ai<br>
+claude<br>
+<br>
+# Or run it inside VS Code &mdash; install the Claude Code extension from the marketplace
+      </div>
+      <div class="data-table-wrapper" style="margin-top: 16px;">
+        <table>
+          <thead><tr><th>Prerequisite</th><th>Install</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td>Node.js 18+</td><td>https://nodejs.org/</td><td>Required for Claude Code CLI</td></tr>
+            <tr><td>Anthropic API Key</td><td>https://console.anthropic.com/</td><td>Set via <code>ANTHROPIC_API_KEY</code> env var or enter on first run</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 16px;"><strong style="color: var(--accent);">How to use it:</strong> Start Claude Code in your project directory. Describe what you want to build &mdash; e.g. "Build P4: a soft sensor model using the debutanizer dataset in input/debutanizer/". Claude will read the data, write the code, run it, fix errors, and iterate until the model works. Use it for all 12 projects.</p>
+    </div>
+
+    <div class="setup-group">
       <h3>Python Packages</h3>
       <div class="code-block">
 pip install numpy pandas scikit-learn matplotlib plotly streamlit flask sqlalchemy<br>
