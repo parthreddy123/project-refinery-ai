@@ -1,0 +1,27 @@
+# Input datasets — team downloads these themselves (see DOWNLOAD_GUIDE.md)
+input/tep/
+input/debutanizer/
+input/crude_assays/
+input/dwsim_source/
+input/lbnl_energy/
+input/ppac_demand/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+*.egg-info/
+
+# Environment
+.env
+.env.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
