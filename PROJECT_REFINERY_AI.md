@@ -1,14 +1,14 @@
 # Project Refinery AI
 
 ## The Mission
-Build 12 working AI prototypes for refinery and trading operations — trained on real process data, connected to live market prices — as the Strategy & AI Transformation team at Reliance R&M.
+Build 12 working AI prototypes for refinery and trading operations — trained on real process data, connected to live market prices — as the Strategy & AI Transformation team.
 
 Working models on real data, not assessments on slides.
 
 ---
 
 ## Context
-Reliance R&M operates the world's largest refining complex at Jamnagar (1.24M bpd across DTA + SEZ). A systems assessment (completed in `reliance-ai-transformation/`) identified 5 structural problems and sized the AI opportunity at $964M-$2.7B/year. Project Refinery AI is the execution of that assessment.
+The world's largest refining complex at Jamnagar (1.24M bpd across DTA + SEZ). A systems assessment (completed in `ai-transformation/`) identified 5 structural problems and sized the AI opportunity at $964M-$2.7B/year. Project Refinery AI is the execution of that assessment.
 
 The 5 structural problems:
 1. Islands of automation — best-in-class point solutions (Aspen, Honeywell, SAP, OSIsoft) that don't talk to each other
@@ -30,14 +30,14 @@ The 5 structural problems:
 
 ### P2: Crude Selection Optimizer
 **What:** AI that recommends the optimal crude slate given current market prices and refinery yield predictions.
-**Why:** Reliance procures ~$50B+ of crude annually. Aspen PIMS runs weekly LP optimization — slow and disconnected from real-time market moves. Even a 0.5% improvement in crude selection = $250M/year.
+**Why:** The refinery procures ~$50B+ of crude annually. Aspen PIMS runs weekly LP optimization — slow and disconnected from real-time market moves. Even a 0.5% improvement in crude selection = $250M/year.
 **Data:** P1 (DWSIM yields) + EIA live prices + crude assay database (Arab Heavy, Basrah Light, Murban, Upper Zakum, etc.)
 **Deliverable:** "Switch 30% of your slate from Arab Heavy to Upper Zakum this week — $2.40/bbl margin gain based on current Dubai-Brent spread."
 **Maps to:** Aspen PIMS replacement | $68-181M/year
 
 ### P3: Predictive Maintenance
 **What:** Detect equipment faults from sensor patterns before they cause failures or shutdowns.
-**Why:** Reliance runs reactive maintenance via SAP PM. Bently Nevada vibration data and OSIsoft PI sensor data exist but aren't connected to ML. Unplanned downtime at Jamnagar's scale costs millions per day.
+**Why:** The refinery runs reactive maintenance via SAP PM. Bently Nevada vibration data and OSIsoft PI sensor data exist but aren't connected to ML. Unplanned downtime at Jamnagar's scale costs millions per day.
 **Data:** Tennessee Eastman Process dataset — 52 sensors, 21 fault modes, ~150MB
 **Deliverable:** Model that catches a compressor fault 45 minutes before the DCS alarm fires.
 **Maps to:** SAP PM reactive culture | $36-91M/year
@@ -225,5 +225,5 @@ All datasets go into `input/`. Download in priority order — earlier projects u
 ---
 
 ## Related Projects
-- `reliance-ai-transformation/` — Systems assessment, 3-layer framework, opportunity mapping
+- `ai-transformation/` — Systems assessment, 3-layer framework, opportunity mapping
 - `oil-dashboard/` — Live geopolitical scenario engine (becomes P8)
