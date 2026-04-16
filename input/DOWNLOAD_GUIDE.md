@@ -1,4 +1,4 @@
-# Project Dhurandhar — Input Datasets Download Guide
+# Project Refinery AI — Input Datasets Download Guide
 
 ## 1. Tennessee Eastman Process (TEP) → `tep/`
 **What:** 52 sensor variables from a chemical plant, 21 fault modes. For P3 (Predictive Maintenance) and P7 (Alarm Rationalization) and P10 (APC Self-Tuning).

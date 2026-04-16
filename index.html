@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Refinery AI</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0a0a0a;
+  --bg-card: #141414;
+  --bg-card-hover: #1a1a1a;
+  --border: #222;
+  --text: #e8e8e8;
+  --text-muted: #888;
+  --accent: #d4a017;
+  --accent-dim: rgba(212, 160, 23, 0.15);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --- Layout --- */
+.container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+section {
+  padding: 72px 0;
+  border-bottom: 1px solid var(--border);
+}
+section:last-of-type { border-bottom: none; }
+
+/* --- Hero --- */
+.hero {
+  padding: 120px 0 80px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+.hero h1 {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+.hero h1 span { color: var(--accent); }
+.hero .tagline {
+  font-size: 1.15rem;
+  color: var(--text-muted);
+  max-width: 640px;
+  margin: 0 auto 32px;
+  font-weight: 300;
+}
+.hero .value-pill {
+  display: inline-block;
+  background: var(--accent-dim);
+  color: var(--accent);
+  padding: 8px 20px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: 1px solid rgba(212, 160, 23, 0.25);
+}
+
+/* --- Section headings --- */
+h2 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  letter-spacing: -0.01em;
+}
+h2 .num {
+  color: var(--accent);
+  font-weight: 700;
+  margin-right: 8px;
+}
+.section-sub {
+  color: var(--text-muted);
+  margin-bottom: 40px;
+  font-size: 0.95rem;
+  max-width: 700px;
+}
+
+/* --- Mission --- */
+.mission-text {
+  font-size: 1.15rem;
+  max-width: 760px;
+  line-height: 1.8;
+}
+.mission-text strong { color: var(--accent); font-weight: 600; }
+
+/* --- Problems --- */
+.problems-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+}
+.problem-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 24px;
+}
+.problem-card .problem-num {
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+}
+.problem-card h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.problem-card p {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+/* --- Project Cards --- */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+}
+.project-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 28px;
+  transition: border-color 0.2s, background 0.2s;
+  display: flex;
+  flex-direction: column;
+}
+.project-card:hover {
+  border-color: rgba(212, 160, 23, 0.35);
+  background: var(--bg-card-hover);
+}
+.project-card .card-header {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.project-card .pid {
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+.project-card h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+.project-card .card-what {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  margin-bottom: 16px;
+  line-height: 1.55;
+  flex: 1;
+}
+.card-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.8rem;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+.card-meta .meta-row {
+  display: flex;
+  gap: 8px;
+}
+.card-meta .meta-label {
+  color: var(--text-muted);
+  min-width: 72px;
+  flex-shrink: 0;
+}
+.card-meta .meta-value {
+  color: var(--text);
+}
+.card-meta .meta-value.accent {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* --- Tables --- */
+.data-table-wrapper { overflow-x: auto; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+th {
+  text-align: left;
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+}
+td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-muted);
+}
+tr:hover td { color: var(--text); }
+
+/* --- Build Order --- */
+.phase {
+  margin-bottom: 28px;
+}
+.phase-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.phase-badge {
+  background: var(--accent-dim);
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 0.78rem;
+  padding: 4px 12px;
+  border-radius: 4px;
+  letter-spacing: 0.04em;
+}
+.phase-title {
+  font-weight: 600;
+  font-size: 1rem;
+}
+.phase-timeline {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+.phase ul {
+  list-style: none;
+  padding-left: 0;
+}
+.phase li {
+  padding: 6px 0 6px 20px;
+  position: relative;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+.phase li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 14px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* --- Data Downloads --- */
+.download-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+.download-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 22px;
+}
+.download-card h4 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.download-card .dl-dest {
+  font-size: 0.78rem;
+  color: var(--accent);
+  font-family: monospace;
+  margin-bottom: 8px;
+}
+.download-card .dl-for {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+.download-card .dl-desc {
+  font-size: 0.84rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+.download-card a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(212, 160, 23, 0.3);
+}
+.download-card a:hover { border-bottom-color: var(--accent); }
+
+/* --- Software setup --- */
+.setup-group { margin-bottom: 32px; }
+.setup-group h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+code, .code-block {
+  font-family: 'SF Mono', 'Consolas', monospace;
+  font-size: 0.84rem;
+}
+.code-block {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 18px 22px;
+  overflow-x: auto;
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+
+/* --- Footer --- */
+footer {
+  text-align: center;
+  padding: 48px 24px;
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+footer .footer-accent { color: var(--accent); font-weight: 500; }
+
+/* --- Nav --- */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
+}
+nav .nav-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+}
+nav .nav-brand {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text);
+}
+nav .nav-brand span { color: var(--accent); }
+nav .nav-links {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+}
+nav .nav-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 500;
+  transition: color 0.15s;
+}
+nav .nav-links a:hover { color: var(--accent); }
+
+@media (max-width: 640px) {
+  nav .nav-links { display: none; }
+  .hero { padding: 96px 0 56px; }
+  section { padding: 48px 0; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .problems-grid { grid-template-columns: 1fr; }
+  .download-cards { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-brand"><span>Refinery</span> AI</div>
+    <ul class="nav-links">
+      <li><a href="#mission">Mission</a></li>
+      <li><a href="#problems">Problems</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#setup">Setup</a></li>
+      <li><a href="#data">Data</a></li>
+      <li><a href="#build-order">Build Order</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container">
+    <h1>Project <span>Refinery AI</span></h1>
+    <p class="tagline">12 working AI prototypes for refinery and trading operations, trained on real process data and connected to live market prices.</p>
+    <div class="value-pill">Total addressable value: $358M - $964M / year</div>
+  </div>
+</header>
+
+<!-- Mission -->
+<section id="mission">
+  <div class="container">
+    <h2><span class="num">01</span>Mission</h2>
+    <p class="mission-text">
+      Build <strong>12 working AI prototypes</strong> for Reliance R&amp;M refinery and trading operations &mdash; trained on real process data, connected to live market prices &mdash; as the Strategy &amp; AI Transformation team.
+      <br><br>
+      Working models on real data, not assessments on slides.
+      <br><br>
+      Reliance R&amp;M operates the world's largest refining complex at Jamnagar (1.24M bpd across DTA + SEZ). A systems assessment identified <strong>5 structural problems</strong> and sized the AI opportunity at <strong>$964M &ndash; $2.7B/year</strong>. Project Refinery AI is the execution of that assessment.
+    </p>
+  </div>
+</section>
+
+<!-- The 5 Problems -->
+<section id="problems">
+  <div class="container">
+    <h2><span class="num">02</span>The 5 Problems</h2>
+    <p class="section-sub">Structural gaps identified across the Jamnagar complex that AI can close.</p>
+    <div class="problems-grid">
+      <div class="problem-card">
+        <div class="problem-num">Problem 1</div>
+        <h3>Islands of Automation</h3>
+        <p>Best-in-class point solutions (Aspen, Honeywell, SAP, OSIsoft) that don't talk to each other.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-num">Problem 2</div>
+        <h3>No Unified Data Platform</h3>
+        <p>Everything converges in SAP BW or Excel. No single source of truth for operational data.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-num">Problem 3</div>
+        <h3>APC Underperformance</h3>
+        <p>Controllers running at less than 70% uptime, losing approximately $4-5M/yr per 1% downtime.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-num">Problem 4</div>
+        <h3>Planning-Execution Disconnect</h3>
+        <p>PIMS weekly plan to Excel to manual coordination to RTO offline. No closed loop.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-num">Problem 5</div>
+        <h3>Trading Flying Blind</h3>
+        <p>Overnight batch VaR, manual market intelligence, no AI signals on $50B+ crude procurement.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- The 12 Projects -->
+<section id="projects">
+  <div class="container">
+    <h2><span class="num">03</span>The 12 Projects</h2>
+    <p class="section-sub">Each prototype targets a specific operational gap with real data and measurable value.</p>
+    <div class="projects-grid">
+
+      <!-- P1 -->
+      <div class="project-card">
+        <div class="card-header">
+          <span class="pid">P1</span>
+          <h3>DWSIM CLI Engine</h3>
+        </div>
+        <p class="card-what">Extract the open-source DWSIM process simulator (.NET) from its GUI and wrap it as a CLI/Python API. Enables conversational AI to run thermodynamic simulations on demand.</p>
+        <div class="card-meta">
+          <div class="meta-row"><span class="meta-label">Feeds</span><span class="meta-value">P2, P5, P6, P10</span></div>
+          <div class="meta-row"><span class="meta-label">Depends on</span><span class="meta-value">None (foundation)</span></div>
+          <div class="meta-row"><span class="meta-label">Data</span><span class="meta-value">DWSIM source from GitHub</span></div>
+          <div class="meta-row"><span class="meta-label">Value</span><span class="meta-value accent">Foundation layer</span></div>
+        </div>
+      </div>
+
+      <!-- P2 -->
+      <div class="project-card">
+        <div class="card-header">
+          <span class="pid">P2</span>
+          <h3>Crude Selection Optimizer</h3>
+        </div>
+        <p class="card-what">AI that recommends the optimal crude slate given current market prices and refinery yield predictions. Even 0.5% improvement in crude selection on $50B+ procurement = $250M/year.</p>
+        <div class="card-meta">
+          <div class="meta-row"><span class="meta-label">Feeds</span><span class="meta-value">P12</span></div>
+          <div class="meta-row"><span class="meta-label">Depends on</span><span class="meta-value">P1</span></div>
+          <div class="meta-row"><span class="meta-label">Data</span><span class="meta-value">DWSIM yields + EIA prices + crude assays</span></div>
+          <div class="meta-row"><span class="meta-label">Value</span><span class="meta-value accent">$68 - $181M / year</span></div>
+        </div>
+      </div>
+
+      <!-- P3 -->
+      <div class="project-card">
+        <div class="card-header">
+          <span class="pid">P3</span>
+          <h3>Predictive Maintenance</h3>
+        </div>
+        <p class="card-what">Detect equipment faults from sensor patterns before they cause failures or shutdowns. Connects Bently Nevada vibration and OSIsoft PI sensor data to ML models.</p>
+        <div class="card-meta">
+          <div class="meta-row"><span class="meta-label">Feeds</span><span class="meta-value">P7, P10, P12</span></div>
+          <div class="meta-row"><span class="meta-label">Depends on</span><span class="meta-value">None</span></div>
+          <div class="meta-row"><span class="meta-label">Data</span><span class="meta-value">Tennessee Eastman Process (52 sensors, 21 faults)</span></div>
+          <div class="meta-row"><span class="meta-label">Value</span><span class="meta-value accent">$36 - $91M / year</span></div>
+        </div>
+      </div>
+
+      <!-- P4 -->
+      <div class="project-card">
+        <div class="card-header">
+          <span class="pid">P4</span>
+          <h3>Soft Sensor</h3>
+        </div>
+        <p class="card-what">Predict product quality (e.g., butane content) from live process sensors, eliminating the 2-4 hour wait for lab results and reducing quality giveaway.</p>
+        <div class="card-meta">
+          <div class="meta-row"><span class="meta-label">Feeds</span><span class="meta-value">P12</span></div>
+          <div class="meta-row"><span class="meta-label">Depends on</span><span class="meta-value">None</span></div>
+          <div class="meta-row"><span class="meta-label">Data</span><span class="meta-value">Debutanizer column dataset (~2300 samples)</span></div>
+          <div class="meta-row"><span class="meta-label">Value</span><span class="meta-value accent">$23 - $68M / year</span></div>
+        </div>
+      </div>
+
+      <!-- P5 -->
+      <div class="project-card">
+        <div class="card-header">
+          <span class="pid">P5</span>
+          <h3>Blend Optimizer</h3>
+        </div>
+        <p class="card-what">Optimize product blending (gasoline, diesel) to hit spec targets (octane, sulfur, pour point) at minimum component cost. Targets quality giveaway reduction from 1-3% to under 0.5%.</p>
+        <div class="card-meta">
+          <div class="meta-row"><span class="meta-label">Feeds</span><span class="meta-value">P12</span></div>
+          <div class="meta-row"><span class="meta-label">Depends on</span><span class="meta-value">P1</span></div>
+          <div class="meta-row"><span class="meta-label">Data</span><span class="meta-value">DWSIM properties + BIS/Euro fuel specs</span></div>
+          <div class="meta-row"><span class="meta-label">Value</span><span class="meta-value accent">$36 - $91M / year</span></div>
+        </div>
+      </div>
+
+      <!-- P6 -->
+      <div class="project-card">
+        <div class="card-header">
+          <span class="pid">P6</span>
+          <h3>Energy / Steam Optimizer</h3>
+        </div>
+        <p class="card-what">Minimize fuel gas consumption and optimize steam/power balance across boilers, turbines, and heat exchangers. Energy is 50-60% of refinery operating cost.</p>
+        <div class="card-meta">
+          <div class="meta-row"><span class="meta-label">Feeds</span><span class="meta-value">P12</span></div>
+          <div class="meta-row"><span class="meta-label">Depends on</span><span class="meta-value">P1</span></div>
+          <div class="meta-row"><span class="meta-label">Data</span><span class="meta-value">LBNL energy audit data + DWSIM utilities</span></div>
+          <div class="meta-row"><span class="meta-label">Value</span><span class="meta-value accent">$36 - $91M / year</span></div>
+        </div>
+      </div>
+
+      <!-- P7 -->
+      <div class="project-card">
+        <div class="card-header">
+          <span class="pid">P7</span>
+          <h3>Alarm Rationalization</h3>
+        </div>
+        <p class="card-what">Cluster, prioritize, and suppress nuisance alarms using pattern recognition. Target: reduce standing alarms by 60-70% per ISA-18.2 standard.</p>
+        <div class="card-meta">
+          <div class="meta-row"><span class="meta-label">Feeds</span><span class="meta-value">P12</span></div>
+          <div class="meta-row"><span class="meta-label">Depends on</span><span class="meta-value">P3 data</span></div>
+          <div class="meta-row"><span class="meta-label">Data</span><span class="meta-value">Alarm sequences from TEP fault scenarios</span></div>
+          <div class="meta-row"><span class="meta-label">Value</span><span class="meta-value accent">$9 - $23M / year</span></div>
+        </div>
+      </div>
+
+      <!-- P8 -->
+      <div class="project-card">
+        <div class="card-header">
+          <span class="pid">P8</span>
+          <h3>Market Intelligence Engine</h3>
+        </div>
+        <p class="card-what">NLP on news articles producing geopolitical signals, scenario probabilities, and trading recommendations. Replaces manual Platts/Argus/Bloomberg compilation.</p>
+        <div class="card-meta">
+          <div class="meta-row"><span class="meta-label">Feeds</span><span class="meta-value">P9, P12</span></div>
+          <div class="meta-row"><span class="meta-label">Depends on</span><span class="meta-value">None</span></div>
+          <div class="meta-row"><span class="meta-label">Data</span><span class="meta-value">News RSS + Claude Haiku scoring</span></div>
+          <div class="meta-row"><span class="meta-label">Value</span><span class="meta-value accent">$14 - $36M / year</span></div>
+        </div>
+      </div>
+
+      <!-- P9 -->
+      <div class="project-card">
+        <div class="card-header">
+          <span class="pid">P9</span>
+          <h3>Real-Time Risk Dashboard</h3>
+        </div>
+        <p class="card-what">Live VaR, position tracking, crude cargo exposure, and hedging recommendations. Replaces overnight batch risk computation for $50B+ crude exposure.</p>
+        <div class="card-meta">
+          <div class="meta-row"><span class="meta-label">Feeds</span><span class="meta-value">P12</span></div>
+          <div class="meta-row"><span class="meta-label">Depends on</span><span class="meta-value">None</span></div>
+          <div class="meta-row"><span class="meta-label">Data</span><span class="meta-value">yfinance futures + simulated positions</span></div>
+          <div class="meta-row"><span class="meta-label">Value</span><span class="meta-value accent">ETRM replacement</span></div>
+        </div>
+      </div>
+
+      <!-- P10 -->
+      <div class="project-card">
+        <div class="card-header">
+          <span class="pid">P10</span>
+          <h3>APC Self-Tuning Simulator</h3>
+        </div>
+        <p class="card-what">Simulate an APC controller, then build an AI agent that detects degradation and recommends retuning. Single fastest payback: every 1% APC downtime = ~$4-5M/yr lost.</p>
+        <div class="card-meta">
+          <div class="meta-row"><span class="meta-label">Feeds</span><span class="meta-value">P12</span></div>
+          <div class="meta-row"><span class="meta-label">Depends on</span><span class="meta-value">P1, P3</span></div>
+          <div class="meta-row"><span class="meta-label">Data</span><span class="meta-value">TEP dataset + PID/MPC simulation</span></div>
+          <div class="meta-row"><span class="meta-label">Value</span><span class="meta-value accent">$45 - $113M / year</span></div>
+        </div>
+      </div>
+
+      <!-- P11 -->
+      <div class="project-card">
+        <div class="card-header">
+          <span class="pid">P11</span>
+          <h3>Demand Forecasting</h3>
+        </div>
+        <p class="card-what">Predict Indian fuel demand by product, region, and season using ML. Target: monthly diesel demand forecast within 5% accuracy, 3 months ahead.</p>
+        <div class="card-meta">
+          <div class="meta-row"><span class="meta-label">Feeds</span><span class="meta-value">P12</span></div>
+          <div class="meta-row"><span class="meta-label">Depends on</span><span class="meta-value">None</span></div>
+          <div class="meta-row"><span class="meta-label">Data</span><span class="meta-value">PPAC monthly consumption (5+ years)</span></div>
+          <div class="meta-row"><span class="meta-label">Value</span><span class="meta-value accent">SAP APO replacement</span></div>
+        </div>
+      </div>
+
+      <!-- P12 -->
+      <div class="project-card">
+        <div class="card-header">
+          <span class="pid">P12</span>
+          <h3>Digital Twin Dashboard</h3>
+        </div>
+        <p class="card-what">Unified cockpit tying all 11 projects into a single view &mdash; the refinery's nervous system. One screen: crude prices, yields, margins, quality, equipment health, risk, demand.</p>
+        <div class="card-meta">
+          <div class="meta-row"><span class="meta-label">Feeds</span><span class="meta-value">--</span></div>
+          <div class="meta-row"><span class="meta-label">Depends on</span><span class="meta-value">P1 - P11</span></div>
+          <div class="meta-row"><span class="meta-label">Data</span><span class="meta-value">Outputs from all projects</span></div>
+          <div class="meta-row"><span class="meta-label">Value</span><span class="meta-value accent">$23 - $45M / year</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Software Setup -->
+<section id="setup">
+  <div class="container">
+    <h2><span class="num">04</span>Software Setup</h2>
+    <p class="section-sub">All tools are free and open-source. Install before starting development.</p>
+
+    <div class="setup-group">
+      <h3>Core Environment</h3>
+      <div class="data-table-wrapper">
+        <table>
+          <thead><tr><th>Software</th><th>Version</th><th>Used By</th></tr></thead>
+          <tbody>
+            <tr><td>Python</td><td>3.10+</td><td>All projects</td></tr>
+            <tr><td>Git</td><td>Latest</td><td>All projects</td></tr>
+            <tr><td>VS Code</td><td>Latest</td><td>All projects</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="setup-group">
+      <h3>Python Packages</h3>
+      <div class="code-block">
+pip install numpy pandas scikit-learn matplotlib plotly streamlit flask sqlalchemy<br>
+pip install torch torchvision &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; # P3, P4, P10<br>
+pip install yfinance requests beautifulsoup4 &nbsp; # P8, P9<br>
+pip install anthropic &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; # P8, P12<br>
+pip install scipy statsmodels prophet &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; # P11<br>
+pip install pdfplumber tabula-py &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; # P11
+      </div>
+    </div>
+
+    <div class="setup-group">
+      <h3>.NET / DWSIM (P1 only)</h3>
+      <div class="data-table-wrapper">
+        <table>
+          <thead><tr><th>Software</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td>.NET SDK 6.0+</td><td>Required to build DWSIM from source</td></tr>
+            <tr><td>DWSIM Desktop</td><td>Install for visual flowsheet testing</td></tr>
+            <tr><td>DWSIM Source</td><td><code>git clone https://github.com/DanWBR/dwsim.git input/dwsim_source/</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="setup-group">
+      <h3>API Keys</h3>
+      <div class="data-table-wrapper">
+        <table>
+          <thead><tr><th>Key</th><th>Used By</th></tr></thead>
+          <tbody>
+            <tr><td>EIA API Key</td><td>P2, P9 (crude/product prices)</td></tr>
+            <tr><td>Anthropic API Key</td><td>P8, P12 (Claude scoring + narratives)</td></tr>
+            <tr><td>NewsAPI Key</td><td>P8 (news scraping)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Data Downloads -->
+<section id="data">
+  <div class="container">
+    <h2><span class="num">05</span>Data Downloads</h2>
+    <p class="section-sub">All datasets go into <code>input/</code>. Download in priority order &mdash; earlier projects unblock later ones.</p>
+    <div class="download-cards">
+
+      <div class="download-card">
+        <h4>Debutanizer Column</h4>
+        <div class="dl-dest">input/debutanizer/</div>
+        <div class="dl-for">For P4 (Soft Sensor) &mdash; ~1MB</div>
+        <p class="dl-desc">7 process variables + butane content target from a real refinery distillation column. ~2300 samples.<br><a href="https://www.kaggle.com/datasets/algorithmiaio/debutanizer-column-dataset" target="_blank">Kaggle download</a></p>
+      </div>
+
+      <div class="download-card">
+        <h4>Tennessee Eastman Process</h4>
+        <div class="dl-dest">input/tep/</div>
+        <div class="dl-for">For P3, P7, P10 &mdash; ~150MB</div>
+        <p class="dl-desc">52 sensor variables, 21 fault modes from a simulated chemical plant.<br><a href="https://www.kaggle.com/datasets/averkij/tennessee-eastman-process-simulation-dataset" target="_blank">Kaggle download</a></p>
+      </div>
+
+      <div class="download-card">
+        <h4>Crude Assay Data</h4>
+        <div class="dl-dest">input/crude_assays/</div>
+        <div class="dl-for">For P2, P5 &mdash; Manual collection</div>
+        <p class="dl-desc">Priority crudes for Jamnagar: Arab Heavy, Arab Light, Basrah Light/Heavy, Murban, Upper Zakum, Kuwait Export, Oman, Das, Bonny Light, Castilla. Normalize into CSV.</p>
+      </div>
+
+      <div class="download-card">
+        <h4>DWSIM Source Code</h4>
+        <div class="dl-dest">input/dwsim_source/</div>
+        <div class="dl-for">For P1 &mdash; ~2GB</div>
+        <p class="dl-desc">.NET/VB.NET open-source process simulator. Extract the thermodynamic engine and wrap as CLI/Python API.<br><a href="https://github.com/DanWBR/dwsim" target="_blank">GitHub repository</a></p>
+      </div>
+
+      <div class="download-card">
+        <h4>PPAC Demand Data</h4>
+        <div class="dl-dest">input/ppac_demand/</div>
+        <div class="dl-for">For P11 &mdash; Manual PDF downloads</div>
+        <p class="dl-desc">Monthly consumption of petroleum products + refinery-wise crude throughput. 5+ years of history.<br><a href="https://www.ppac.gov.in/consumption" target="_blank">PPAC website</a></p>
+      </div>
+
+      <div class="download-card">
+        <h4>LBNL Industrial Energy Data</h4>
+        <div class="dl-dest">input/lbnl_energy/</div>
+        <div class="dl-for">For P6 &mdash; Varies</div>
+        <p class="dl-desc">Refinery energy audit data: steam generation, boiler loads, furnace efficiency, heat exchange.<br><a href="https://iindustrial.lbl.gov/" target="_blank">LBNL database</a></p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Build Order -->
+<section id="build-order">
+  <div class="container">
+    <h2><span class="num">06</span>Build Order</h2>
+    <p class="section-sub">Phased rollout over 8 weeks. Quick wins first, then the foundation engine, optimization layer, and integration.</p>
+
+    <div class="phase">
+      <div class="phase-header">
+        <span class="phase-badge">Phase 1</span>
+        <span class="phase-title">Quick Wins</span>
+        <span class="phase-timeline">Week 1-2</span>
+      </div>
+      <ul>
+        <li>P4: Soft Sensor &mdash; debutanizer dataset, straightforward ML</li>
+        <li>P3: Predictive Maintenance &mdash; TEP dataset, classification and anomaly detection</li>
+        <li>P8: Market Intelligence &mdash; polish and connect existing engine</li>
+      </ul>
+    </div>
+
+    <div class="phase">
+      <div class="phase-header">
+        <span class="phase-badge">Phase 2</span>
+        <span class="phase-title">The Engine</span>
+        <span class="phase-timeline">Week 2-4</span>
+      </div>
+      <ul>
+        <li>P1: DWSIM CLI Engine &mdash; the hardest engineering (.NET extraction)</li>
+        <li>P7: Alarm Rationalization &mdash; derived from TEP data</li>
+        <li>P9: Real-Time Risk Dashboard &mdash; futures data + VaR computation</li>
+      </ul>
+    </div>
+
+    <div class="phase">
+      <div class="phase-header">
+        <span class="phase-badge">Phase 3</span>
+        <span class="phase-title">Optimization</span>
+        <span class="phase-timeline">Week 4-6</span>
+      </div>
+      <ul>
+        <li>P2: Crude Selection Optimizer &mdash; requires P1</li>
+        <li>P5: Blend Optimizer &mdash; requires P1</li>
+        <li>P10: APC Self-Tuning &mdash; requires P1 + P3 foundation</li>
+      </ul>
+    </div>
+
+    <div class="phase">
+      <div class="phase-header">
+        <span class="phase-badge">Phase 4</span>
+        <span class="phase-title">Integration</span>
+        <span class="phase-timeline">Week 6-8</span>
+      </div>
+      <ul>
+        <li>P6: Energy/Steam Optimizer &mdash; requires P1</li>
+        <li>P11: Demand Forecasting &mdash; PPAC data</li>
+        <li>P12: Digital Twin Dashboard &mdash; integration layer across all projects</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <span class="footer-accent">Strategy & AI Transformation</span> &mdash; Reliance R&M
+  </div>
+</footer>
+
+</body>
+</html>

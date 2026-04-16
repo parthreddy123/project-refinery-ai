@@ -1,4 +1,4 @@
-# Project Dhurandhar
+# Project Refinery AI
 
 ## The Mission
 Build 12 working AI prototypes for refinery and trading operations — trained on real process data, connected to live market prices — as the Strategy & AI Transformation team at Reliance R&M.
@@ -8,7 +8,7 @@ Working models on real data, not assessments on slides.
 ---
 
 ## Context
-Reliance R&M operates the world's largest refining complex at Jamnagar (1.24M bpd across DTA + SEZ). A systems assessment (completed in `reliance-ai-transformation/`) identified 5 structural problems and sized the AI opportunity at $964M-$2.7B/year. Project Dhurandhar is the execution of that assessment.
+Reliance R&M operates the world's largest refining complex at Jamnagar (1.24M bpd across DTA + SEZ). A systems assessment (completed in `reliance-ai-transformation/`) identified 5 structural problems and sized the AI opportunity at $964M-$2.7B/year. Project Refinery AI is the execution of that assessment.
 
 The 5 structural problems:
 1. Islands of automation — best-in-class point solutions (Aspen, Honeywell, SAP, OSIsoft) that don't talk to each other
