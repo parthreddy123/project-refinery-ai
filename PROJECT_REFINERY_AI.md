@@ -8,7 +8,7 @@ Working models on real data, not assessments on slides.
 ---
 
 ## Context
-The world's largest refining complex at Jamnagar (1.24M bpd across DTA + SEZ). A systems assessment (completed in `ai-transformation/`) identified 5 structural problems and sized the AI opportunity at $964M-$2.7B/year. Project Refinery AI is the execution of that assessment.
+A large-scale refining complex. A systems assessment (completed in `ai-transformation/`) identified 5 structural problems and sized the AI opportunity at $964M-$2.7B/year. Project Refinery AI is the execution of that assessment.
 
 The 5 structural problems:
 1. Islands of automation — best-in-class point solutions (Aspen, Honeywell, SAP, OSIsoft) that don't talk to each other
@@ -37,28 +37,28 @@ The 5 structural problems:
 
 ### P3: Predictive Maintenance
 **What:** Detect equipment faults from sensor patterns before they cause failures or shutdowns.
-**Why:** The refinery runs reactive maintenance via SAP PM. Bently Nevada vibration data and OSIsoft PI sensor data exist but aren't connected to ML. Unplanned downtime at Jamnagar's scale costs millions per day.
+**Why:** The refinery runs reactive maintenance via SAP PM. Bently Nevada vibration data and OSIsoft PI sensor data exist but aren't connected to ML. Unplanned downtime at the refinery's scale costs millions per day.
 **Data:** Tennessee Eastman Process dataset — 52 sensors, 21 fault modes, ~150MB
 **Deliverable:** Model that catches a compressor fault 45 minutes before the DCS alarm fires.
 **Maps to:** SAP PM reactive culture | $36-91M/year
 
 ### P4: Soft Sensor
 **What:** Predict product quality (e.g., butane content) from live process sensors, eliminating the 2-4 hour wait for lab results.
-**Why:** LIMS at Jamnagar has a 2-4 hour cycle time. During that window, off-spec product could be blended into tanks, causing quality giveaway. A soft sensor gives real-time quality estimates.
+**Why:** LIMS at the refinery has a 2-4 hour cycle time. During that window, off-spec product could be blended into tanks, causing quality giveaway. A soft sensor gives real-time quality estimates.
 **Data:** Debutanizer column dataset — 7 process variables + butane content target, ~2300 samples
 **Deliverable:** Model predicts butane content within 0.5% accuracy from temperature/pressure/flow readings.
 **Maps to:** LIMS lag | $23-68M/year
 
 ### P5: Blend Optimizer
 **What:** Optimize product blending (gasoline, diesel) to hit spec targets (octane, sulfur, pour point) at minimum component cost.
-**Why:** Honeywell Blend Control is installed but quality giveaway runs 1-3%. At Jamnagar volumes, 1% giveaway on diesel alone is significant.
+**Why:** Honeywell Blend Control is installed but quality giveaway runs 1-3%. At the refinery volumes, 1% giveaway on diesel alone is significant.
 **Data:** P1 (DWSIM component properties) + BIS/Euro fuel spec tables + component pricing
 **Deliverable:** "Reduce premium gasoline RON giveaway from 1.2 to 0.3 points — saves $0.80/bbl."
 **Maps to:** Honeywell Blend quality giveaway | $36-91M/year
 
 ### P6: Energy/Steam Optimizer
 **What:** Minimize fuel gas consumption and optimize steam/power balance across boilers, turbines, and heat exchangers.
-**Why:** Visual MESA is installed but boiler loading is sub-optimal. Energy is 50-60% of refinery operating cost. Even 2-3% improvement is massive at Jamnagar scale.
+**Why:** Visual MESA is installed but boiler loading is sub-optimal. Energy is 50-60% of refinery operating cost. Even 2-3% improvement is massive at the refinery scale.
 **Data:** LBNL industrial energy audit data + DWSIM utilities model
 **Deliverable:** Optimal boiler loading schedule that saves 3% on fuel gas.
 **Maps to:** Visual MESA gap | $36-91M/year
@@ -200,7 +200,7 @@ All datasets go into `input/`. Download in priority order — earlier projects u
 - Chevron crude assay library — https://crudemarketing.chevron.com/
 - ADNOC — publishes Murban, Das, Upper Zakum assays publicly
 - Saudi Aramco — Arab Light/Medium/Heavy in technical papers
-**Priority crudes for Jamnagar:** Arab Heavy, Arab Light, Basrah Light, Basrah Heavy, Murban, Upper Zakum, Kuwait Export, Oman, Das, Nigerian Bonny Light, Colombian Castilla
+**Priority crudes for the refinery:** Arab Heavy, Arab Light, Basrah Light, Basrah Heavy, Murban, Upper Zakum, Kuwait Export, Oman, Das, Nigerian Bonny Light, Colombian Castilla
 **Normalize into CSV:** columns = `crude_name, api_gravity, sulfur_pct, yield_lpg, yield_naphtha, yield_kero, yield_diesel, yield_vgo, yield_residue`
 
 ### 4. DWSIM Source Code → `input/dwsim_source/`
